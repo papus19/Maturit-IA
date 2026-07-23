@@ -2,6 +2,7 @@ import streamlit as st
 import plotly.graph_objects as go
 from supabase import create_client, Client
 from urllib.parse import urlencode
+from pathlib import Path
 
 # ============================================================
 # CONFIGURATION DE LA PAGE
@@ -63,7 +64,14 @@ st.markdown(
 )
 
 # En-tête avec logo (affiché sur les deux écrans)
-st.image("assets/logo-mokafad.png", width=220)
+LOGO_PATH = Path(__file__).parent / "assets" / "logo-mokafad.png"
+if LOGO_PATH.exists():
+    st.image(str(LOGO_PATH), width=220)
+else:
+    st.warning(
+        f"⚠️ Logo introuvable à l'emplacement attendu : {LOGO_PATH}. "
+        "Vérifiez que le dossier 'assets' a bien été poussé sur GitHub."
+    )
 
 # ============================================================
 # 1. INITIALISATION DU CLIENT SUPABASE (via les secrets)
@@ -270,7 +278,7 @@ def construire_lien_calendly(res: dict) -> str:
     résultat, pour que l'équipe commerciale puisse préparer le rendez-vous.
     Le résumé est passé en 'a1' : si votre événement Calendly a une question
     personnalisée (ex: 'Contexte'), elle sera pré-remplie automatiquement."""
-    base_url = "https://calendly.com/infosmokafad/30min"
+    base_url = "https://calendly.com/VOTRE_LIEN"
     resume = (
         f"Entreprise: {res['company']} | "
         f"Score global: {res['score_global']:.2f}/4.00 | "
