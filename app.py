@@ -275,7 +275,7 @@ def construire_lien_calendly(res: dict) -> str:
     résultat, pour que l'équipe commerciale puisse préparer le rendez-vous.
     Le résumé est passé en 'a1' : si votre événement Calendly a une question
     personnalisée (ex: 'Contexte'), elle sera pré-remplie automatiquement."""
-    base_url = "https://calendly.com/VOTRE_LIEN"
+    base_url = "https://calendly.com/infosmokafad/30min"
     resume = (
         f"Entreprise: {res['company']} | "
         f"Score global: {res['score_global']:.2f}/4.00 | "
